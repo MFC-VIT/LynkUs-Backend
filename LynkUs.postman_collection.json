@@ -1,0 +1,756 @@
+{
+	"info": {
+		"_postman_id": "1871835d-bcfc-4e4d-ab40-4cd2cf3f3684",
+		"name": "LynkUs",
+		"description": "# LynkUs Backend API\n## User\n- Register a User\n- Update User details\n- Get a particular users details\n## Attendance\n- Add the attendance details of a particular user for a particular meeting\n- Update the attendance details of a particular user for a particular meeting\n- Get the attendance details of a particular meeting\n- Get the attendance details of a particular user for a particular meeting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"test-name1\",\r\n    \"email\" : \"testemail1@abc.com\",\r\n    \"phone_no\" : \"9012129012\",\r\n    \"password\" : \"testpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/user/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"add"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register User - Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"test-name1\",\r\n    \"email\" : \"testemail2@abc.com\",\r\n    \"phone_no\" : \"9035672012\",\r\n    \"password\" : \"testpass\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/user/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"add"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "14"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e-BJI9AxOzqZi+jKbbhSrgAFrCgjY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 Sep 2021 11:09:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "New User added"
+						}
+					]
+				},
+				{
+					"name": "User Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/user/details?email=testemail1@abc.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"details"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "testemail1@abc.com"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get User Details - Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/user/details?email=testemail1@abc.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"details"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "testemail1@abc.com"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "143"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8f-4lw4DP+y24hH6BMsBWchK/ZcWlQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 Sep 2021 11:09:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"6139e2d1a918f9b226a82830\",\n    \"name\": \"test-name1\",\n    \"email\": \"testemail1@abc.com\",\n    \"phone_no\": 9012129012,\n    \"password\": \"testpass-updated\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User Details",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"test-name1\",\r\n    \"email\" : \"testemail1@abc.com\",\r\n    \"phone_no\" : \"9012129012\",\r\n    \"password\" : \"testpass-updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/user/update?email=testemail1@abc.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"update"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "testemail1@abc.com"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update User Details - Example",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"test-name1\",\r\n    \"email\" : \"testemail1@abc.com\",\r\n    \"phone_no\" : \"9012129012\",\r\n    \"password\" : \"testpass-updated-twice\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/user/update?email=testemail1@abc.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"update"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "testemail1@abc.com"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "20"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14-ax196tvQx34CPUF63k2OSpdpnkk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 Sep 2021 11:09:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "User details updated"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Attendance",
+			"item": [
+				{
+					"name": "Add Attendance Details of a User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"testemail1@abc.com\",\r\n    \"meetingId\" : \"123\",\r\n    \"attend\" : true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/attendance/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"attendance",
+								"add"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Does not provide a reason",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"testemail3@abc.com\",\r\n    \"meetingId\" : \"123\",\r\n    \"attend\" : false\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/attendance/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"attendance",
+										"add"
+									]
+								}
+							},
+							"status": "Length Required",
+							"code": 411,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "21"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15-XsWhMakP/o4cIVZi4PmPQxKCpCo\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 Sep 2021 10:54:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Please enter a reason"
+						},
+						{
+							"name": "Add Attendance Details of a User -Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"testemail4@abc.com\",\r\n    \"meetingId\" : \"123\",\r\n    \"attend\" : true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/attendance/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"attendance",
+										"add"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-KInxR0hsZtQfMsXlMg1jJdNHZ6Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 Sep 2021 11:10:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": \"testemail4@abc.com\",\n    \"meetingId\": 123,\n    \"attend\": true,\n    \"reason\": \"\",\n    \"_id\": \"6139eb9c2279ed71a9a5edbe\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Show all Attendance of a particular meeting",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/attendance/showall?meetingId=123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"attendance",
+								"showall"
+							],
+							"query": [
+								{
+									"key": "meetingId",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show all Attendance of a particular meeting -Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/attendance/showall?meetingId=123",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"attendance",
+										"showall"
+									],
+									"query": [
+										{
+											"key": "meetingId",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "348"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15c-ddDV8V3TQMtSxrQPaY0PEGNETpQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 Sep 2021 11:10:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"6139e789a918f9b226a82836\",\n        \"email\": \"testemail1@abc.com\",\n        \"meetingId\": 123,\n        \"attend\": true,\n        \"reason\": \"\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"6139e7c0a918f9b226a82838\",\n        \"email\": \"testemail2@abc.com\",\n        \"meetingId\": 123,\n        \"attend\": false,\n        \"reason\": \"busy\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"6139eb9c2279ed71a9a5edbe\",\n        \"email\": \"testemail4@abc.com\",\n        \"meetingId\": 123,\n        \"attend\": true,\n        \"reason\": \"\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Show Attendance of a paricular user for a paricular meeting",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/attendance/show?meetingId=123&email=testemail1@abc.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"attendance",
+								"show"
+							],
+							"query": [
+								{
+									"key": "meetingId",
+									"value": "123"
+								},
+								{
+									"key": "email",
+									"value": "testemail1@abc.com"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show Attendance of a paricular user for a paricular meeting -example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/attendance/show?meetingId=123&email=testemail1@abc.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"attendance",
+										"show"
+									],
+									"query": [
+										{
+											"key": "meetingId",
+											"value": "123"
+										},
+										{
+											"key": "email",
+											"value": "testemail1@abc.com"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-zsFck3xxOqIyMI3pQmpdIHFDcHY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 Sep 2021 11:10:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"6139e789a918f9b226a82836\",\n    \"email\": \"testemail1@abc.com\",\n    \"meetingId\": 123,\n    \"attend\": true,\n    \"reason\": \"\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Update attendance of a particular user for a particular meeting",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"testemail2@abc.com\",\r\n    \"meetingId\" : \"123\",\r\n    \"attend\": true\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/attendance/update?meetingId=123&email=testemail1@abc.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"attendance",
+								"update"
+							],
+							"query": [
+								{
+									"key": "meetingId",
+									"value": "123"
+								},
+								{
+									"key": "email",
+									"value": "testemail1@abc.com"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update attendance of a particular user for a particular meeting - example",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"testemail4@abc.com\",\r\n    \"meetingId\" : \"123\",\r\n    \"attend\": false,\r\n    \"reason\" : \"busy\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/attendance/update?meetingId=123&email=testemail1@abc.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"attendance",
+										"update"
+									],
+									"query": [
+										{
+											"key": "meetingId",
+											"value": "123"
+										},
+										{
+											"key": "email",
+											"value": "testemail1@abc.com"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "18"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12-pfbWYCWJg/3huoPOf/9apoFMXaM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 Sep 2021 11:11:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Attendance updated"
+						}
+					]
+				}
+			]
+		}
+	]
+}
