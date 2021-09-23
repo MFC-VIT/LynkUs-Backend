@@ -19,7 +19,7 @@ const MeetingSchema = new mongoose.Schema({
         required: true,
     },
     gid: {
-        type: ObjectId,
+        type: String,
         required: true,
     },
     link: {
@@ -27,7 +27,7 @@ const MeetingSchema = new mongoose.Schema({
         required: true,
     },
     adminId: {
-        type: ObjectId,
+        type: String,
         required: true,
     }
 });
