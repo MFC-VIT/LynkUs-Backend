@@ -71,4 +71,4 @@ const addAttendance = (async(req,res) => {
     return res.status(201).send(attendance)    
 })
 
-module.exports = {showAttendance, showAttendanceAll, updateAttendance, addAttendance}
+module.exports = { showAttendance, showAttendanceAll, updateAttendance, addAttendance }

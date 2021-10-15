@@ -7,7 +7,7 @@ const MeetingSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        min: Date.now,
+        min: Date.now(),
         required: true,
     },
     time: {
