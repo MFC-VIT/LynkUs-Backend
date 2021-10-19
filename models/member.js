@@ -17,5 +17,3 @@ const MemberSchema = new mongoose.Schema({
 })
 
 module.exports = mongoose.model('Member', MemberSchema)
-
-// 3. Member - Foreign Key of groups table, user Id, is_admin
