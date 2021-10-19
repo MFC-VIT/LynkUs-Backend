@@ -1,9 +1,10 @@
 const mongoose = require('mongoose') 
 const Member = require('../models/member')
 const Group = require('../models/group')
+const User = require('../models/User')
 
 const memberinfo = async(req,res)=>{
-    const { uid, isadmin, gid,} = req.body
+    let {uid, isadmin, gid,} = req.body
     try{
         const meminfo = new Member({uid ,isadmin ,gid})
         await meminfo.save()
@@ -16,15 +17,29 @@ const memberinfo = async(req,res)=>{
 }
 
 const displayMember = async(req,res) =>{
+    const gid = req.params.gid
+    try
+    {
+        const data = await Member.find({gid})
+        // console.log(data)
         try
         {
-            const data = await Member.find({})
-            res.status(200).send(data)
+            console.log(data)
+            const userId  = []
+            data.forEach(element => userId.push(element.uid))
+            const sendDetails = await User.find({ '_id' : { $in : userId}})
+            res.status(200).send(sendDetails)
         }
         catch(e)
         {
-            res.status(404).send(e)
+            console.log(e)
         }
+
+    }
+    catch(e)
+    {
+        res.status(404).send(e)
+    }
 }
 
 

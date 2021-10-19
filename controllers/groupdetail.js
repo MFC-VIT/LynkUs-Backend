@@ -6,61 +6,83 @@ const path = require('path');
 require('dotenv/config');
 const multer = require('multer');
 const Group = require('../models/group')
+const Member = require('../models/member')
 
 const createGroup = async (req, res) => {
     const {title, dp, admin} = req.body
     const date = new Date()
     const Detail = new Group({title, dp, date, admin})
-    // validate the admin if exists or not
-    const check = Group.find({admin})
-    if(check.countDocuments > 0)
-    {
-        res.send()
-    }
     await Detail.save()
     return res.status(201).send(Detail)
 }
 
 const adminExist = async(req,res) =>{
-    const {title, dp, admin} = req.body
-    const date = new Date()
-    const Detail = new Group({title, dp, date, admin})
-    // validate the admin if exists or not
-    const check = Group.find({admin})
-    if(check.countDocuments > 0)
-    {
-        res.status(200).send(check)
+    const gid = req.query.group
+    const uid = req.query.user
+    console.log(gid)
+    console.log(uid)
+    try
+    {  
+        const findAdmin = await Member.find({gid, uid})
+        // console.log(findAdmin[0].isadmin)
+        if(findAdmin[0].isadmin)
+        {
+            res.send('User is Admin')
+        }
+        else
+        {
+            res.send('Not Admin') //not admin
+        }
     }
-    else
+    catch(e)
     {
-        res.status(404).send('Not an admin')
+        res.send(e).status(404)
     }
+
 }
 
 const getGroup = async(req,res) =>{
-    const gid = req.body.gid
-    const check = await Group.find({gid})
-    if(check.length > 0)
+    // console.log(req.params._id)
+    try
     {
-        res.status(200).send(check) 
+        const findGroup = await Group.findById({_id : req.params._id})
+        res.status(200).send(findGroup) 
     }
-    else
+    catch(e)
     {
         res.status(404).send('Not found !');
     }
 }
 
+const getUsers = async(req,res) =>{
+    const gid = req.params.gid
+    // console.log(gid)
+    try
+    {
+        const findUsers = await Member.find({ gid })
+        // console.log(findUsers)
+        res.send(findUsers)
+    }
+    catch(e)
+    {
+        res.send('Not found').status(404)
+    }
+}
 
 const getUserGroup = async(req,res) =>{
-    const uid = req.body.uid
-    const check = await Group.find({uid})
-    if(check.length > 0)
+    const uid = req.params._id
+    // console.log(uid)
+    const check = await Member.findById({_id : uid})        
+    try
     {
-        res.status(200).send(check) 
+        // console.log(check.gid)
+        const UserGroup = await Group.findById({_id : check.gid})
+        // console.log(UserGroup)
+        res.send(UserGroup)
     }
-    else
+    catch(e)
     {
-        res.status(404).send('Not found !');
+        res.send('NA')
     }
 }
 
@@ -76,15 +98,5 @@ const displayGroup = async(req,res) =>{
     }
 }
 
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, 'uploads')
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, file.fieldname + '-' + Date.now())
-//     }
-// });
-// const upload = multer({ storage: storage });
-
-module.exports = {createGroup,displayGroup,getGroup,getUserGroup,adminExist}
+module.exports = {createGroup,displayGroup,getGroup,getUserGroup,adminExist,getUsers}
 
