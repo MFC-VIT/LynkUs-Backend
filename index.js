@@ -12,8 +12,8 @@ const attendanceRoute = require('./routes/attendanceRoute')
 const groupRoute = require('./routes/groupRouter')
 const memberRoute = require('./routes/memberRouter')
 
-app.use('/attendance',attendanceRoute)
-app.use('/user',userRoute)
+app.use('/attendance', attendanceRoute)
+app.use('/user', userRoute)
 
 app.use('/group', groupRoute)
 app.use('/member', memberRoute)

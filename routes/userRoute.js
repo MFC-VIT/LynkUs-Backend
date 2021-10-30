@@ -4,6 +4,6 @@ const { addUser, getUser, patchUser } = require('../controllers/userData')
 
 router.get('/details', getUser)
 router.post('/add', addUser)
-router.patch('/update',patchUser)
+router.patch('/update', patchUser)
 
 module.exports = router
