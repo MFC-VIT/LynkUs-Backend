@@ -28,6 +28,8 @@ const updateAttendance = (async(req,res) => {
 
     const {Email, MeetingId, attend, reason} = req.body
     
+    if(!attend && !reason)
+        return res.status(411).send("Please enter a reason")
     
     const attendance = await Attendance.findOneAndUpdate({email: email, meetingId: meetingId},{
         Email,
@@ -37,9 +39,6 @@ const updateAttendance = (async(req,res) => {
     },
     {new: true})  
     
-    if(!attend && !reason)
-        return res.status(411).send("Please enter a reason")
-
     try {
         await attendance.save();
     } catch (err) {
