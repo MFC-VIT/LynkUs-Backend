@@ -9,9 +9,14 @@ app.use(express.urlencoded({extended: false}));
 
 const userRoute = require('./routes/userRoute')
 const attendanceRoute = require('./routes/attendanceRoute')
+const groupRoute = require('./routes/groupRouter')
+const memberRoute = require('./routes/memberRouter')
 
-app.use('/attendance',attendanceRoute)
-app.use('/user',userRoute)
+app.use('/attendance', attendanceRoute)
+app.use('/user', userRoute)
+
+app.use('/group', groupRoute)
+app.use('/member', memberRoute)
 
 const PORT = process.env.PORT || 3030
 
