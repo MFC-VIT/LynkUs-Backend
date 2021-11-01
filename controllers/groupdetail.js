@@ -60,12 +60,13 @@ const getUsers = async(req,res) =>{
     try
     {
         const findUsers = await Member.find({ gid })
+        if(findUsers.length === 0) throw e
         // console.log(findUsers)
         res.send(findUsers)
     }
     catch(e)
     {
-        res.send('Not found').status(404)
+        res.status(404).send('Not found')
     }
 }
 
