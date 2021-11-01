@@ -1,13 +1,16 @@
 const mongoose = require('mongoose');
 
 const attendanceSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true,
-        unique: true
+    uid : {
+        required : true,
+        type : String
     },
     meetingId: {
         type: Number,
+        required: true
+    },
+    gid: {
+        type: String,
         required: true
     },
     attend: {
