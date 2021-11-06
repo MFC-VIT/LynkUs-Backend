@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const attendanceSchema = new mongoose.Schema({
     uid : {
-        required : true,
-        type : String
+        type : String,
+        required : true
     },
     meetingId: {
         type: Number,

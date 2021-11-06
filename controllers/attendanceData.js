@@ -3,19 +3,19 @@ const User = require('../models/User')
 const Member = require ('../models/member')
 
 const showAttendance = (async(req,res) => {
-    const {uid , meetingId, gid} = req.query
+    const {uid, gid} = req.query
 
-    const user = await User.findById({_id: uid})
+    const user = await User.find({_id: uid})
 
     if(!user || user.length === 0)
         return res.status(404).send("User does not exist")
     
-    const member = await Member.findOne({uid: uid, gid: gid})
+    const member = await Member.find({uid: uid, gid: gid})
 
     if(!member || member.length === 0)
         return res.status(404).send("User is not part of the group")
 
-    const attendance = await Attendance.findOne({uid: uid, meetingId: meetingId})
+    const attendance = await Attendance.find({uid: uid, gid: gid})
 
     if(!attendance || attendance.length === 0) 
         return res.status(404).send("Attendance record does not exist")
@@ -41,26 +41,26 @@ const showAttendanceAll = (async(req,res) => {
 })
 
 const updateAttendance = (async(req,res) => {
-    const {uid , meetingId} = req.query
+    const {uid , gid,  meetingId} = req.query
 
-    const {MeetingId, gid, attend, reason} = req.body
+    const {attend, reason} = req.body
     
     if(!attend && !reason)
     return res.status(411).send("Please enter a reason")
     
-    const user = await User.findById({_id: uid})
+    const user = await User.find({_id: uid})
 
     if(!user || user.length === 0)
         return res.status(404).send("User does not exist")
     
-    const member = await Member.findOne({uid: uid, gid: gid})
+    const member = await Member.find({uid: uid, gid: gid})
 
     if(!member || member.length === 0)
         return res.status(404).send("User is not part of the group")
     
-    const attendance = await Attendance.findOneAndUpdate({uid: uid, meetingId: meetingId},{
+    const attendance = await Attendance.findOneAndUpdate({uid: uid, meetingId: meetingId, gid: gid},{
         uid,
-        MeetingId,
+        meetingId,
         gid,
         attend,
         reason 
@@ -83,12 +83,13 @@ const addAttendance = (async(req,res) => {
     if(!attend && !reason)
     return res.status(411).send("Please enter a reason")
     
-    const user = await User.findById({_id: uid})
+    try {
+    const user = await User.find({_id: uid})
 
     if(!user || user.length === 0)
         return res.status(404).send("User does not exist")
     
-    const member = await Member.findOne({uid: uid, gid: gid})
+    const member = await Member.find({uid: uid, gid: gid})
 
     if(!member || member.length === 0)
         return res.status(404).send("User is not part of the group")
@@ -100,13 +101,13 @@ const addAttendance = (async(req,res) => {
         attend, 
         reason 
     })    
-    try {
+    
         await attendance.save();
+        return res.status(201).send(attendance)    
     } catch (err) {
         return res.status(500).send(err)
     }
 
-    return res.status(201).send(attendance)    
 })
 
 module.exports = {showAttendance, showAttendanceAll, updateAttendance, addAttendance}
