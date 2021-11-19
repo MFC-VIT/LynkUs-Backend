@@ -12,12 +12,14 @@ const attendanceRoute = require('./routes/attendanceRoute')
 const groupRoute = require('./routes/groupRouter')
 const memberRoute = require('./routes/memberRouter')
 const meetRoute = require('./routes/meetingRoute')
+const viewRoute = require('./routes/viewRoute')
 
 app.use('/user', userRoute)
 app.use('/attendance', attendanceRoute)
 app.use('/group', groupRoute)
 app.use('/member', memberRoute)
 app.use('/meet', meetRoute)
+app.use('/',viewRoute)
 
 const PORT = process.env.PORT || 3030
 
