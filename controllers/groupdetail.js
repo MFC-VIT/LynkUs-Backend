@@ -107,5 +107,5 @@ const displayGroup = async (req, res) => {
 // });
 // const upload = multer({ storage: storage });
 
-module.exports = { createGroup, displayGroup, getGroup, getUserGroup, adminExist }
+module.exports = { createGroup, displayGroup, getGroup, getUserGroup, adminExist, getUsers }
 
