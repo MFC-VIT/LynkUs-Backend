@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose') 
+const mongoose = require('mongoose')
 const fs = require('fs');
 const path = require('path');
 require('dotenv/config');
@@ -9,7 +9,7 @@ const Group = require('../models/group')
 const Member = require('../models/member')
 
 const createGroup = async (req, res) => {
-    const {title, dp, admin} = req.body
+    const { title, dp, admin } = req.body
     const date = new Date()
     const Detail = new Group({title, dp, date, admin})
     await Detail.save()
@@ -87,17 +87,25 @@ const getUserGroup = async(req,res) =>{
     }
 }
 
-const displayGroup = async(req,res) =>{
-    try
-    {
+const displayGroup = async (req, res) => {
+    try {
         const data = await Group.find({})
         res.status(200).send(data)
     }
-    catch(e)
-    {
+    catch (e) {
         res.status(404).send(e)
     }
 }
 
-module.exports = {createGroup,displayGroup,getGroup,getUserGroup,adminExist,getUsers}
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'uploads')
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + '-' + Date.now())
+//     }
+// });
+// const upload = multer({ storage: storage });
+
+module.exports = { createGroup, displayGroup, getGroup, getUserGroup, adminExist }
 

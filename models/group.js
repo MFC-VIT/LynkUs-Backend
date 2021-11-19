@@ -1,20 +1,20 @@
 const mongoose = require('mongoose')
 
 const GroupSchema = new mongoose.Schema({
-    title : {
-        type : String,
-        required : true,
+    title: {
+        type: String,
+        required: true,
     },
-    dp : {
+    dp: {
         data: Buffer,
-        type : String,
+        type: String,
     },
-    date : {
-        type : String
+    date: {
+        type: String
     },
-    admin : {
-        type : String,
-        required : true
+    admin: {
+        type: String,
+        required: true
     }
 })
 

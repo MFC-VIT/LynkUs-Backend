@@ -110,4 +110,4 @@ const addAttendance = (async(req,res) => {
 
 })
 
-module.exports = {showAttendance, showAttendanceAll, updateAttendance, addAttendance}
+module.exports = { showAttendance, showAttendanceAll, updateAttendance, addAttendance }
