@@ -43,7 +43,7 @@ const createMeet = async (req, res) => {
     return res.status(201).send(meeting);
 }
 
-// Controller for getting all meetings
+// Controller for getting all meetings of a group
 const getAllMeet = async (req, res) => {
     const { gid } = req.params;
     const { uid } = req.query;
@@ -94,7 +94,7 @@ const getMeet = async (req, res) => {
 // Controller for updating a meeting
 const updateMeet = async (req, res) => {
     const { mid } = req.params;
-    const { title, date, time, isformal, gid, link, adminId } = req.body;
+    let { title, date, time, isformal, gid, link, adminId } = req.body;
 
     const user = await User.findById(adminId);
     // Check if user exists
